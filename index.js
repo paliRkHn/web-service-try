@@ -3,7 +3,7 @@ require('dotenv').config();
 const createContainer = require('./src/infrastructure/container');
 const createServer = require('./src/infrastructure/web-express/server');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 const container = createContainer();
 const app = createServer(container);
