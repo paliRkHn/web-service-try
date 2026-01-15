@@ -1,6 +1,6 @@
 const ThingRepository = require('../../domain/repositories/ThingRepository');
 const Thing = require('../../domain/entities/Thing');
-const { v4: uuidv4 } = require('uuid');
+const crypto = require('crypto');
 
 class InMemoryThingRepository extends ThingRepository {
     constructor() {
@@ -11,9 +11,9 @@ class InMemoryThingRepository extends ThingRepository {
 
     initialMockData() {
         const mockThings = [
-            { id: uuidv4(), name: 'Thing 1', description: 'This is the first thing.' },
-            { id: uuidv4(), name: 'Thing 2', description: 'This is the second thing.' },
-            { id: uuidv4(), name: 'Thing 3', description: 'This is the third thing.' }
+            { id: crypto.randomUUID(), name: 'Thing 1', description: 'This is the first thing.' },
+            { id: crypto.randomUUID(), name: 'Thing 2', description: 'This is the second thing.' },
+            { id: crypto.randomUUID(), name: 'Thing 3', description: 'This is the third thing.' }
         ];
 
         mockThings.forEach(thing => {
@@ -38,7 +38,7 @@ class InMemoryThingRepository extends ThingRepository {
     }
 
     async create(thing) {
-        const id = uuidv4();
+        const id = crypto.randomUUID();
         const newThing = { 
             id,
             name: thing.name,
